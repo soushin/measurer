@@ -100,7 +100,7 @@ class EventTracking {
 
         mp.also { ga ->
             ga.event("video", "play").apply {
-                clientId = cid.toString()
+                clientId = "555"
                 eventLabel = "holiday"
                 eventValue = 300
             }
