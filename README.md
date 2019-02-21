@@ -1,3 +1,6 @@
+[![Bintray](https://api.bintray.com/packages/soushin/maven/measurer/images/download.svg) ](https://bintray.com/soushin/maven/measurer/_latestVersion)
+
+
 # Measurer
 
 - Measurer is client library for Google Analytics(using measurement protocol).
@@ -46,8 +49,35 @@ class Sample {
 
 ## Todo
 
-- [ ] Upload bintray
+- [x] Upload bintray
 - [ ] Support iOS, JS
+
+## Installation
+
+Add the measurer bintray repository to your build.gradle
+
+```groovy
+repositories {
+    maven { url "https://dl.bintray.com/soushin/maven" }
+}
+```
+
+Depending on your type of Kotlin project add one of these dependencies:
+
+**Common**
+```groovy
+implementation 'com.github.soushin:measurer:0.0.1'
+```
+
+**JVM**
+```groovy
+implementation 'com.github.soushin:measurer-jvm:0.0.1'
+
+```
+**Android**
+```groovy
+implementation 'com.github.soushin:measurer-android:0.0.1'
+```
 
 ## Usage
 

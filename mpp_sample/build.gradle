@@ -21,6 +21,8 @@ kotlin {
                 implementation rootProject.ext.napierCommon
 
                 implementation project(':measurer')
+                // write the below in your project, instead of above
+                // implementation "com.github.soushin:measurer:[measurer latest version]"
             }
         }
         androidMain {
