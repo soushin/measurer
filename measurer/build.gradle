@@ -8,11 +8,8 @@ group 'com.github.soushin'
 version '1.0.0'
 
 kotlin {
-    targets {
-        fromPreset(presets.android, 'android')
-
-        fromPreset(presets.jvm, 'jvm')
-    }
+    android()
+    jvm()
 
     sourceSets {
         commonMain {
@@ -41,6 +38,8 @@ kotlin {
         }
         androidTest {
             dependencies {
+                // ktor
+                implementation rootProject.ext.ktorClientMockJvm
             }
         }
         jvmMain {

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mpp_sample-jvm">
+    <output-path>$PROJECT_DIR$/mpp_sample/build/libs</output-path>
+    <root id="archive" name="mpp_sample-jvm.jar">
+      <element id="module-output" name="mpp_sample_jvmMain" />
+    </root>
+  </artifact>
+</component>

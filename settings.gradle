@@ -1,2 +1,2 @@
-include ':measurer', ':android', ':jvm'
+include ':measurer', ':mpp_sample', ':android', ':jvm'
 enableFeaturePreview('GRADLE_METADATA')

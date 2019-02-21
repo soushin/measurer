@@ -2,7 +2,7 @@ package com.github.soushin.measurer.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.github.soushin.measurer.MeasurementProtocol
+import com.github.soushin.measurer.GoogleAnalytics
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
@@ -16,21 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         runBlocking {
-            send()
+            GoogleAnalytics.pageTracking(TRACKING_ID)
+            GoogleAnalytics.eventTracking(TRACKING_ID)
         }
-    }
-
-    suspend fun send() {
-        val mp = MeasurementProtocol
-            .Builder(trackingId = TRACKING_ID)
-            .build()
-
-        mp.also { ga ->
-            ga.pageView(documentHostName = "hostname", documentPath = "/foo/bar").apply {
-                userAgentOverride = UserAgent.get()
-                clientId = ('A'..'z').map { it }.shuffled().subList(0, 10).joinToString("")
-                applicationName = "Measurer SampleApp"
-            }
-        }.send()
     }
 }
