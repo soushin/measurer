@@ -428,15 +428,4 @@ abstract class Payload {
         setParam(parameter, value)
         fn(value)
     }
-
-    private fun <T : Any> setProperty(
-        value: Pair<Int, T>?,
-        fixIndexFunc: (Int) -> Parameter,
-        setFiledFunc: (Pair<Int, T>?) -> Unit
-    ) {
-        value?.first?.let {
-            setParam(fixIndexFunc(it), value.second)
-        }
-        setFiledFunc(value)
-    }
 }
