@@ -12,7 +12,7 @@
 common sample code
 ```kotlin
 class Sample {
-    suspend fun measurer() {
+    suspend fun track() {
         val mp = MeasurementProtocol
             .Builder(
                 trackingId = "UA-12345678-1"
@@ -51,16 +51,18 @@ class Sample {
 
 ## Usage
 
-### Page Tracking
-
-- Android, Jvm
+- Common module
 
 ```kotlin
-class PageTracking {
-    suspend fun pageTracking() {
+object GoogleAnalytics {
+
+    private val httpClient = SampleHttpClient(SampleHttpClientConfig.httpClient, SampleNapierLogger())
+
+    suspend fun pageTracking(ua: String) {
         val mp = MeasurementProtocol
             .Builder(
-                trackingId = "UA-12345678-1"
+                trackingId = ua,
+                httpClient = httpClient
             ).build()
 
         mp.also { ga ->
@@ -86,27 +88,10 @@ class PageTracking {
 }
 ```
 
-### Event Tracking
-
 - Android, Jvm
 
 ```kotlin
-class EventTracking {
-    suspend fun eventTracking() {
-        val mp = MeasurementProtocol
-            .Builder(
-                trackingId = "UA-12345678-1"
-            ).build()
-
-        mp.also { ga ->
-            ga.event("video", "play").apply {
-                clientId = "555"
-                eventLabel = "holiday"
-                eventValue = 300
-            }
-        }.send()
-    }
-}
+GoogleAnalytics.pageTracking(trackingId)
 ```
 
 ## HttpClient

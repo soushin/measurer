@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlinx-serialization'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -13,6 +12,13 @@ android {
         versionName rootProject.ext.mobileVersionName
     }
 
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     sourceSets.each {
         it.manifest.srcFile "src/androidMain/AndroidManifest.xml"
     }
@@ -20,17 +26,11 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    androidExtensions {
-        experimental = true
-    }
 }
 
 dependencies {
     implementation rootProject.ext.kotlin
-
-    // serialization
-    implementation rootProject.ext.serialization
+    implementation rootProject.ext.coroutine
 
     // ktor
     implementation rootProject.ext.ktorClientAndroid

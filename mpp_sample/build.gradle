@@ -1,0 +1,51 @@
+apply plugin: 'kotlin-multiplatform'
+apply from: 'android.gradle'
+
+kotlin {
+    targets {
+        fromPreset(presets.android, 'android')
+
+        fromPreset(presets.jvm, 'jvm')
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation rootProject.ext.kotlinCommon
+                implementation rootProject.ext.coroutineCommon
+
+                // ktor
+                implementation rootProject.ext.ktorClient
+
+                // napier
+                implementation rootProject.ext.napierCommon
+
+                implementation project(':measurer')
+            }
+        }
+        androidMain {
+            // written in android.gradle
+        }
+        androidTest {
+            dependencies {
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation rootProject.ext.kotlin
+                // coroutine
+                implementation rootProject.ext.coroutine
+
+                // ktor
+                implementation rootProject.ext.ktorClientJetty
+
+                // napier
+                implementation rootProject.ext.napierJvm
+            }
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}

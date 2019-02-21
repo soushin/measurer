@@ -26,7 +26,7 @@ buildscript {
 }
 
 dependencies {
-    implementation project(':measurer')
+    implementation project(':mpp_sample')
 
     implementation rootProject.ext.kotlin
 

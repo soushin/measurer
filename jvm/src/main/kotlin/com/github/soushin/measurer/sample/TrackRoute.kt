@@ -1,6 +1,6 @@
 package com.github.soushin.measurer.sample
 
-import com.github.soushin.measurer.MeasurementProtocol
+import com.github.soushin.measurer.GoogleAnalytics
 import io.ktor.application.call
 import io.ktor.locations.KtorExperimentalLocationsAPI
 import io.ktor.locations.Location
@@ -16,23 +16,9 @@ class Track
 fun Route.track() {
     get<Track> {
         call.apply {
-            send(trackingId)
+            GoogleAnalytics.pageTracking(trackingId)
+            GoogleAnalytics.eventTracking(trackingId)
             respond("tracked")
         }
     }
-}
-
-suspend fun send(trackingId: String) {
-    val mp = MeasurementProtocol
-        .Builder(trackingId = trackingId)
-        .build()
-
-    mp.also { ga ->
-        ga.pageView(documentHostName = "hostname", documentPath = "/foo/bar").apply {
-            userAgentOverride = UserAgent.get()
-            clientId = ('A'..'z').map { it }.shuffled().subList(0, 10).joinToString("")
-            documentLocationUrl = "/foo/bar"
-            applicationName = "Measurer SampleApp"
-        }
-    }.send()
 }
