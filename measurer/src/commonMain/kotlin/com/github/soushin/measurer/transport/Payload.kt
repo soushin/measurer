@@ -384,6 +384,7 @@ abstract class Payload {
             customMercies.clear()
             products.clear()
             productImpressions.clear()
+            promotions.clear()
         }
 
     private fun setParam(parameter: Parameter, value: Any?) {
