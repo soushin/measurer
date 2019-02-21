@@ -1,0 +1,50 @@
+ext {
+    // android
+    mobileVersionCode = 1
+    mobileVersionName = "1.0.0"
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+    minSdkVersion = 21
+    targetSdkVersion = 28
+
+    // kotlin
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kotlinCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+
+    // test
+    kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+    kotlinTestAnnotation = "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version"
+    kotlinTestJvm = "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
+    // coroutine
+    coroutine_version = "1.1.1"
+    coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    coroutineCommon = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutine_version"
+
+    // serialization
+    serialization_version = "0.10.0"
+    serialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+    serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+
+    // ktor
+    ktorVersion = "1.1.2"
+    // client
+    ktorClient = "io.ktor:ktor-client-core:$ktorVersion"
+    ktorClientMock = "io.ktor:ktor-client-mock:$ktorVersion"
+    // jvm
+    ktorClientJvm = "io.ktor:ktor-client-core-jvm:$ktorVersion"
+    ktorClientMockJvm = "io.ktor:ktor-client-mock-jvm:$ktorVersion"
+    ktorClientOkhttp = "io.ktor:ktor-client-okhttp:$ktorVersion"
+    ktorClientJetty = "io.ktor:ktor-client-jetty:$ktorVersion"
+    // android
+    ktorClientAndroid = "io.ktor:ktor-client-android:$ktorVersion"
+    // test
+    ktorServerTests = "io.ktor:ktor-server-tests:$ktorVersion"
+    ktorTest = "io.ktor:ktor-server-test-host:$ktorVersion"
+
+    // napier
+    napierVersion = "0.0.1"
+    napierCommon = "com.github.aakira:napier:$napierVersion"
+    napierAndroid = "com.github.aakira:napier-android:$napierVersion"
+    napierJvm = "com.github.aakira:napier-jvm:$napierVersion"
+}

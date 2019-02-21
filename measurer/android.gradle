@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlinx-serialization'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.mobileVersionCode as int
+        versionName rootProject.ext.mobileVersionName
+    }
+
+    sourceSets.each {
+        it.manifest.srcFile "src/androidMain/AndroidManifest.xml"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.kotlin
+
+    // serialization
+    implementation rootProject.ext.serialization
+
+    // ktor
+    implementation rootProject.ext.ktorClientMockJvm
+    implementation rootProject.ext.ktorClientAndroid
+
+    // napier
+    implementation rootProject.ext.napierAndroid
+}

@@ -1,0 +1,73 @@
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
+apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+apply from: 'android.gradle'
+
+group 'com.github.soushin'
+version '1.0.0'
+
+kotlin {
+    targets {
+        fromPreset(presets.android, 'android')
+
+        fromPreset(presets.jvm, 'jvm')
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation rootProject.ext.kotlinCommon
+                implementation rootProject.ext.serializationCommon
+                implementation rootProject.ext.coroutineCommon
+
+                // ktor
+                implementation rootProject.ext.ktorClient
+
+                // napier
+                implementation rootProject.ext.napierCommon
+            }
+        }
+        commonTest {
+            dependencies {
+                // test
+                implementation rootProject.ext.kotlinTest
+                implementation rootProject.ext.kotlinTestAnnotation
+                implementation rootProject.ext.ktorTest
+            }
+        }
+        androidMain {
+            // written in android.gradle
+        }
+        androidTest {
+            dependencies {
+            }
+        }
+        jvmMain {
+            dependencies {
+                // coroutine
+                implementation rootProject.ext.coroutine
+
+                // ktor
+                implementation rootProject.ext.ktorClientJetty
+
+                // napier
+                implementation rootProject.ext.napierJvm
+            }
+        }
+        jvmTest {
+            dependencies {
+                // test
+                implementation rootProject.ext.kotlinTest
+                implementation rootProject.ext.kotlinTestAnnotation
+                implementation rootProject.ext.ktorClientMockJvm
+                implementation rootProject.ext.ktorServerTests
+                implementation rootProject.ext.ktorTest
+            }
+        }
+    }
+}
+
+jvmTest {
+    jvmArgs = ["-javaagent:libs/jetty-alpn-agent-2.0.9.jar"]
+}

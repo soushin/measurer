@@ -1,0 +1,57 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // server
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
+    }
+
+    ext {
+        // ktor
+        ktorVersion = "1.1.1"
+        ktor = "io.ktor:ktor-server-core:$ktorVersion"
+        ktorNetty = "io.ktor:ktor-server-netty:$ktorVersion"
+        ktorLocation = "io.ktor:ktor-locations:$ktorVersion"
+
+        // log
+        logback = "ch.qos.logback:logback-classic:1.2.1"
+    }
+}
+
+dependencies {
+    implementation project(':measurer')
+
+    implementation rootProject.ext.kotlin
+
+    // ktor
+    implementation project(':jvm').ext.ktor
+    implementation project(':jvm').ext.ktorNetty
+    implementation project(':jvm').ext.ktorLocation
+    implementation rootProject.ext.ktorClient
+    implementation rootProject.ext.ktorClientOkhttp
+
+    // log
+    implementation project(':jvm').ext.logback
+}
+
+sourceCompatibility = 1.8
+
+compileKotlin {
+    kotlinOptions.jvmTarget = sourceCompatibility
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = sourceCompatibility
+}
+
+mainClassName = 'io.ktor.server.netty.DevelopmentEngine'
+
+run {
+    jvmArgs = ["-javaagent:${rootProject.file('measurer/libs/jetty-alpn-agent-2.0.9.jar')}"]
+}
