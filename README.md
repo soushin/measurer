@@ -4,13 +4,14 @@
 # Measurer
 
 - Measurer is client library for Google Analytics(using measurement protocol).
-- Kotlin Multi-platform support(JVM, Android).
+- Kotlin Multi-platform support(JVM, Android, iOS).
 
 ## Features
 
 - Supports all measurement protocol parameters.
 - Supports all hit types.
 - Supports batching of requests.
+- This library abstracts the HTTP client. you can implement by any HTTP client(like ktor client, etc).
 
 common sample code
 ```kotlin
@@ -50,7 +51,8 @@ class Sample {
 ## Todo
 
 - [x] Upload bintray
-- [ ] Support iOS, JS
+- [x] Support iOS
+- [ ] Support JS
 
 ## Installation
 
@@ -88,10 +90,10 @@ object GoogleAnalytics {
 
     private val httpClient = SampleHttpClient(SampleHttpClientConfig.httpClient, SampleNapierLogger())
 
-    suspend fun pageTracking(ua: String) {
+    suspend fun pageTracking(tid: String) {
         val mp = MeasurementProtocol
             .Builder(
-                trackingId = ua,
+                trackingId = tid,
                 httpClient = httpClient
             ).build()
 
@@ -120,13 +122,29 @@ object GoogleAnalytics {
 
 - Android, Jvm
 
+Call tracking method.
+
 ```kotlin
-GoogleAnalytics.pageTracking(trackingId)
+GoogleAnalytics.pageTracking(tid: "UA-12345678-1")
 ```
 
-## HttpClient
+- iOS
 
-Library uses [Ktor](https://ktor.io/clients/http-client.html) client. If you want to use your http client, implements Client.
+prepare a proxy at Common module.
+
+```kotlin
+fun pageTracking(tid: String) {
+    NativeScope().launch {
+        GoogleAnalytics().pageTracking(tid)
+    }
+}
+```
+
+Call proxy from ios project.
+
+```swift
+MeasurerProxyKt.pageTracking(tid: "UA-12345678-1")
+```
 
 ## Logger
 
@@ -145,3 +163,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ## Credit
 
 This library is inspired by [brsanthu/google-analytics-java](https://github.com/brsanthu/google-analytics-java).
+
+Thanks for advice.
+@AAkira, @horita-yuya

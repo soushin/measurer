@@ -4,7 +4,12 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockHttpResponse
 import io.ktor.client.request.HttpRequest
-import io.ktor.http.*
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.Url
+import io.ktor.http.fullPath
+import io.ktor.http.headersOf
+import io.ktor.http.hostWithPort
 import kotlinx.coroutines.io.ByteReadChannel
 
 internal val Url.fullUrl: String get() = "${protocol.name}://$hostWithPortIfRequired$fullPath"

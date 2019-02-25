@@ -89,7 +89,6 @@ import com.github.soushin.measurer.parameter.trafficsources.GoogleAdsId
 import com.github.soushin.measurer.parameter.trafficsources.GoogleDisplayAdsId
 import com.github.soushin.measurer.parameter.user.ClientId
 import com.github.soushin.measurer.parameter.user.UserId
-import io.ktor.http.encodeURLParameter
 
 abstract class Payload {
 

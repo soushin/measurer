@@ -74,4 +74,3 @@ class Product(val index: Int) {
         setFiledFunc(value)
     }
 }
-

@@ -3,15 +3,25 @@ apply from: 'android.gradle'
 
 kotlin {
     targets {
-        fromPreset(presets.android, 'android')
-
-        fromPreset(presets.jvm, 'jvm')
+        android()
+        jvm()
+        // ios
+        if (project.findProperty("device")?.toBoolean() ?: false) {
+            iosArm64('ios') {
+                compilations.main.outputKinds('FRAMEWORK')
+            }
+        } else {
+            iosX64('ios') {
+                compilations.main.outputKinds('FRAMEWORK')
+            }
+        }
     }
 
     sourceSets {
         commonMain {
             dependencies {
                 implementation rootProject.ext.kotlinCommon
+                implementation rootProject.ext.coroutineCommon
                 implementation rootProject.ext.coroutineCommon
 
                 // ktor
@@ -45,8 +55,41 @@ kotlin {
                 implementation rootProject.ext.napierJvm
             }
         }
+        iosMain {
+            dependencies {
+                // coroutine
+                implementation rootProject.ext.coroutineNative
+
+                // ktor
+                implementation rootProject.ext.ktorClientIos
+                implementation rootProject.ext.ktorClientCoreNative
+
+                // napier
+                implementation rootProject.ext.napierIos
+            }
+        }
     }
 }
+
+task packForXcode(type: Sync) {
+    final File frameworkDir = new File(buildDir, "xcode-frameworks")
+    final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
+
+    inputs.property "mode", mode
+    dependsOn kotlin.targets.ios.compilations.main.linkTaskName("FRAMEWORK", mode)
+
+    from { kotlin.targets.ios.compilations.main.getBinary("FRAMEWORK", mode).parentFile }
+    into frameworkDir
+
+    doLast {
+        new File(frameworkDir, 'gradlew').with {
+            text = "#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n"
+            setExecutable(true)
+        }
+    }
+}
+
+tasks.build.dependsOn packForXcode
 
 configurations {
     compileClasspath

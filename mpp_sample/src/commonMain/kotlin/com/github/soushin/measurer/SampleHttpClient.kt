@@ -2,7 +2,6 @@ package com.github.soushin.measurer
 
 import com.github.soushin.measurer.httpclient.Client
 import com.github.soushin.measurer.httpclient.HttpClient
-import com.github.soushin.measurer.httpclient.KtorClient
 import com.github.soushin.measurer.transport.TransportConfig
 
 class SampleHttpClient(cli: io.ktor.client.HttpClient, private val log: Logger) : HttpClient() {

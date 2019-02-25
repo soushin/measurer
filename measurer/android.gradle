@@ -29,11 +29,11 @@ android {
 dependencies {
     implementation rootProject.ext.kotlin
 
+    // io
+    implementation rootProject.ext.kotlinxIoJvm
+
     // serialization
     implementation rootProject.ext.serialization
-
-    // ktor
-    implementation rootProject.ext.ktorClientAndroid
 
     // napier
     implementation rootProject.ext.napierAndroid

@@ -8,6 +8,9 @@ kotlin {
     android {
         publishLibraryVariants("release")
     }
+    iosX64('ios')
+    iosArm32('iosArm32')
+    iosArm64('iosArm64')
     jvm()
 
     sourceSets {
@@ -16,9 +19,7 @@ kotlin {
                 implementation rootProject.ext.kotlinCommon
                 implementation rootProject.ext.serializationCommon
                 implementation rootProject.ext.coroutineCommon
-
-                // ktor
-                implementation rootProject.ext.ktorClient
+                implementation rootProject.ext.kotlinxIoCommon
 
                 // napier
                 implementation rootProject.ext.napierCommon
@@ -30,6 +31,9 @@ kotlin {
                 implementation rootProject.ext.kotlinTest
                 implementation rootProject.ext.kotlinTestAnnotation
                 implementation rootProject.ext.ktorTest
+
+                // ktor
+                implementation rootProject.ext.ktorClient
             }
         }
         androidMain {
@@ -38,16 +42,79 @@ kotlin {
         androidTest {
             dependencies {
                 // ktor
+                implementation rootProject.ext.ktorClientAndroid
                 implementation rootProject.ext.ktorClientMockJvm
+            }
+        }
+        iosMain {
+            dependencies {
+                // io
+                implementation rootProject.ext.kotlinxIoNative
+                // coroutine
+                implementation rootProject.ext.coroutineNative
+
+                // serialization
+                implementation rootProject.ext.serializationNative
+
+                // napier
+                implementation rootProject.ext.napierIos
+            }
+        }
+        iosTest {
+            dependencies {
+                // ktor
+                implementation rootProject.ext.ktorClientIos
+                implementation rootProject.ext.ktorClientMockNative
+            }
+        }
+        iosArm32Main {
+            dependencies {
+                // io
+                implementation rootProject.ext.kotlinxIoNative
+                // coroutine
+                implementation rootProject.ext.coroutineNative
+
+                // serialization
+                implementation rootProject.ext.serializationNative
+
+                // napier
+                implementation rootProject.ext.napierIosArm32
+            }
+        }
+        iosArm32Test {
+            dependencies {
+                // ktor
+                implementation rootProject.ext.ktorClientIos
+                implementation rootProject.ext.ktorClientMockNative
+            }
+        }
+        iosArm64Main {
+            dependencies {
+                // io
+                implementation rootProject.ext.kotlinxIoNative
+                // coroutine
+                implementation rootProject.ext.coroutineNative
+
+                // serialization
+                implementation rootProject.ext.serializationNative
+
+                // napier
+                implementation rootProject.ext.napierIosArm64
+            }
+        }
+        iosArm64Test {
+            dependencies {
+                // ktor
+                implementation rootProject.ext.ktorClientIos
+                implementation rootProject.ext.ktorClientMockNative
             }
         }
         jvmMain {
             dependencies {
+                // io
+                implementation rootProject.ext.kotlinxIoJvm
                 // coroutine
                 implementation rootProject.ext.coroutine
-
-                // ktor
-                implementation rootProject.ext.ktorClientJetty
 
                 // napier
                 implementation rootProject.ext.napierJvm
@@ -61,6 +128,9 @@ kotlin {
                 implementation rootProject.ext.ktorClientMockJvm
                 implementation rootProject.ext.ktorServerTests
                 implementation rootProject.ext.ktorTest
+
+                // ktor
+                implementation rootProject.ext.ktorClientJetty
             }
         }
     }
