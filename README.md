@@ -81,6 +81,11 @@ implementation 'com.github.soushin:measurer-jvm:0.0.2'
 implementation 'com.github.soushin:measurer-android:0.0.2'
 ```
 
+**iOS**
+```groovy
+implementation 'com.github.soushin:measurer-ios:0.0.2'
+```
+
 ## Usage
 
 - Common module
