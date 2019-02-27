@@ -170,4 +170,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 This library is inspired by [brsanthu/google-analytics-java](https://github.com/brsanthu/google-analytics-java).
 
 Thanks for advice.
-@AAkira, @horita-yuya
+[@AAkira](https://github.com/AAkira), [@horita-yuya](https://github.com/horita-yuya)
