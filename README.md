@@ -68,17 +68,17 @@ Depending on your type of Kotlin project add one of these dependencies:
 
 **Common**
 ```groovy
-implementation 'com.github.soushin:measurer:0.0.1'
+implementation 'com.github.soushin:measurer:0.0.2'
 ```
 
 **JVM**
 ```groovy
-implementation 'com.github.soushin:measurer-jvm:0.0.1'
+implementation 'com.github.soushin:measurer-jvm:0.0.2'
 
 ```
 **Android**
 ```groovy
-implementation 'com.github.soushin:measurer-android:0.0.1'
+implementation 'com.github.soushin:measurer-android:0.0.2'
 ```
 
 ## Usage
