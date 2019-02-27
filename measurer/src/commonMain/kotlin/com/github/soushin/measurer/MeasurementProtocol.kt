@@ -1,9 +1,6 @@
 package com.github.soushin.measurer
 
-import com.github.soushin.measurer.httpclient.Client
 import com.github.soushin.measurer.httpclient.HttpClient
-import com.github.soushin.measurer.httpclient.HttpClientConfig
-import com.github.soushin.measurer.httpclient.KtorClient
 import com.github.soushin.measurer.logger.NapierLogger
 import com.github.soushin.measurer.transport.EventPayload
 import com.github.soushin.measurer.transport.ExceptionPayload
@@ -27,7 +24,7 @@ class MeasurementProtocol {
     lateinit var tId: String
     lateinit var log: Logger
 
-    var httpCli: HttpClient = DefaultHttpClient(HttpClientConfig.httpClient, NapierLogger())
+    lateinit var httpCli: HttpClient
     var ua: String = TransportConfig.MEASURER_USER_AGENT
 
     private
@@ -114,12 +111,4 @@ class MeasurementProtocol {
         ).also {
             payloads.add(it)
         }
-
-    class DefaultHttpClient(cli: io.ktor.client.HttpClient, private val log: Logger) : HttpClient() {
-        override val client: Client = KtorClient(cli)
-        override val baseUrl: String = TransportConfig.BASE_URL
-        override fun error(statusCode: Int) {
-            log.e("Google Analytics http error: status=$statusCode")
-        }
-    }
 }

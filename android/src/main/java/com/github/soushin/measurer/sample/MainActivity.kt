@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         runBlocking {
-            GoogleAnalytics.pageTracking(TRACKING_ID)
-            GoogleAnalytics.eventTracking(TRACKING_ID)
+            GoogleAnalytics().pageTracking(tid = TRACKING_ID)
+            GoogleAnalytics().eventTracking(tid = TRACKING_ID)
         }
     }
 }

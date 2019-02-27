@@ -16,8 +16,8 @@ class Track
 fun Route.track() {
     get<Track> {
         call.apply {
-            GoogleAnalytics.pageTracking(trackingId)
-            GoogleAnalytics.eventTracking(trackingId)
+            GoogleAnalytics().pageTracking(tid = trackingId)
+            GoogleAnalytics().eventTracking(tid = trackingId)
             respond("tracked")
         }
     }

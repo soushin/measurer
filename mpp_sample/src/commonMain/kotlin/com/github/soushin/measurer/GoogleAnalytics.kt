@@ -2,14 +2,14 @@ package com.github.soushin.measurer
 
 import com.github.soushin.measurer.transport.ContentGroup
 
-object GoogleAnalytics {
+class GoogleAnalytics {
 
-    private val httpClient = SampleHttpClient(SampleHttpClientConfig.httpClient, SampleNapierLogger())
+    private val httpClient = SampleHttpClient(SampleHttpClientConfig().httpClient, SampleNapierLogger())
 
-    suspend fun pageTracking(ua: String) {
+    suspend fun pageTracking(tid: String) {
         val mp = MeasurementProtocol
             .Builder(
-                trackingId = ua,
+                trackingId = tid,
                 httpClient = httpClient
             ).build()
 
@@ -34,10 +34,10 @@ object GoogleAnalytics {
         }.send()
     }
 
-    suspend fun eventTracking(ua: String) {
+    suspend fun eventTracking(tid: String) {
         val mp = MeasurementProtocol
             .Builder(
-                trackingId = ua,
+                trackingId = tid,
                 httpClient = httpClient
             ).build()
 

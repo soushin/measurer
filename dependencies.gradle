@@ -1,7 +1,7 @@
 ext {
     // This library version
     LIBRARY_VERSION_CODE = 1
-    LIBRARY_VERSION_NAME = "0.0.1"
+    LIBRARY_VERSION_NAME = "0.0.2"
     // android
     mobileVersionCode = 1
     mobileVersionName = "1.0.0"
@@ -23,14 +23,22 @@ ext {
     coroutine_version = "1.1.1"
     coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     coroutineCommon = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutine_version"
+    coroutineNative = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutine_version"
+
+    // io
+    kotlinx_io_version = "0.1.6"
+    kotlinxIoCommon = "org.jetbrains.kotlinx:kotlinx-io:$kotlinx_io_version"
+    kotlinxIoJvm = "org.jetbrains.kotlinx:kotlinx-io-jvm:$kotlinx_io_version"
+    kotlinxIoNative = "org.jetbrains.kotlinx:kotlinx-io-native:$kotlinx_io_version"
 
     // serialization
     serialization_version = "0.10.0"
     serialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
     serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+    serializationNative = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
 
     // ktor
-    ktorVersion = "1.1.2"
+    ktorVersion = "1.1.3"
     // client
     ktorClient = "io.ktor:ktor-client-core:$ktorVersion"
     ktorClientMock = "io.ktor:ktor-client-mock:$ktorVersion"
@@ -41,13 +49,20 @@ ext {
     ktorClientJetty = "io.ktor:ktor-client-jetty:$ktorVersion"
     // android
     ktorClientAndroid = "io.ktor:ktor-client-android:$ktorVersion"
+    // native
+    ktorClientIos = "io.ktor:ktor-client-ios:$ktorVersion"
+    ktorClientCoreNative = "io.ktor:ktor-client-core-native:$ktorVersion"
+    ktorClientMockNative = "io.ktor:ktor-client-mock-native:$ktorVersion"
     // test
     ktorServerTests = "io.ktor:ktor-server-tests:$ktorVersion"
     ktorTest = "io.ktor:ktor-server-test-host:$ktorVersion"
 
     // napier
-    napierVersion = "0.0.1"
+    napierVersion = "0.0.2"
     napierCommon = "com.github.aakira:napier:$napierVersion"
     napierAndroid = "com.github.aakira:napier-android:$napierVersion"
     napierJvm = "com.github.aakira:napier-jvm:$napierVersion"
+    napierIos = "com.github.aakira:napier-ios:$napierVersion"
+    napierIosArm32 = "com.github.aakira:napier-iosArm32:$napierVersion"
+    napierIosArm64 = "com.github.aakira:napier-iosArm64:$napierVersion"
 }

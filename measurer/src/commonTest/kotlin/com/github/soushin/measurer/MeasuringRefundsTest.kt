@@ -55,7 +55,7 @@ class MeasuringRefundsTest {
 
                 "cid=$cid",
 
-                "ni=${niValue}",
+                "ni=$niValue",
 
                 "ti=${ti.encodeURLParameter()}",
                 "pa=${pa.encodeURLParameter()}",
