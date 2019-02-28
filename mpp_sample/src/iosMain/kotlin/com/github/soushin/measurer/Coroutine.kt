@@ -12,12 +12,7 @@ import kotlin.coroutines.CoroutineContext
 internal class NativeScope : CoroutineScope {
     private val context = MainDispatcher()
     private val job = Job()
-    private val exceptionHandler = CoroutineExceptionHandler { r, e ->
-        println(r)
-        print(e.cause)
-        print(e.printStackTrace())
-        print(e.message)
-    }
+    private val exceptionHandler = CoroutineExceptionHandler { _, _ -> }
 
     override val coroutineContext: CoroutineContext
         get() = context + job + exceptionHandler

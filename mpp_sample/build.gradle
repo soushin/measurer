@@ -5,7 +5,6 @@ kotlin {
     targets {
         android()
         jvm()
-        // ios
         if (project.findProperty("device")?.toBoolean() ?: false) {
             iosArm64('ios') {
                 compilations.main.outputKinds('FRAMEWORK')
@@ -15,6 +14,7 @@ kotlin {
                 compilations.main.outputKinds('FRAMEWORK')
             }
         }
+        js()
     }
 
     sourceSets {
@@ -68,9 +68,23 @@ kotlin {
                 implementation rootProject.ext.napierIos
             }
         }
+        jsMain {
+            dependencies {
+                implementation rootProject.ext.kotlinJs
+                // coroutine
+                implementation rootProject.ext.coroutineJs
+
+                // ktor
+                implementation rootProject.ext.ktorClientJs
+
+                // napier
+                implementation rootProject.ext.napierJs
+            }
+        }
     }
 }
 
+// native task
 task packForXcode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
@@ -90,6 +104,21 @@ task packForXcode(type: Sync) {
 }
 
 tasks.build.dependsOn packForXcode
+
+// js task
+[compileKotlinJs, compileTestKotlinJs]*.configure {
+    kotlinOptions {
+        moduleKind = "umd"
+    }
+}
+
+task packForJs(type: Copy, dependsOn: compileKotlinJs) {
+    from compileKotlinJs.destinationDir
+
+    into "${buildDir}/js_modules"
+}
+
+tasks.build.dependsOn packForJs
 
 configurations {
     compileClasspath

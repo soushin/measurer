@@ -1,7 +1,6 @@
 package com.github.soushin.measurer
 
 import com.github.soushin.measurer.httpclient.HttpClient
-import com.github.soushin.measurer.logger.NapierLogger
 import com.github.soushin.measurer.transport.EventPayload
 import com.github.soushin.measurer.transport.ExceptionPayload
 import com.github.soushin.measurer.transport.ItemPayload
@@ -32,20 +31,18 @@ class MeasurementProtocol {
 
     class Builder(
         val trackingId: String,
-        private val logger: Logger = NapierLogger(),
-        private val httpClient: HttpClient? = null,
+        private val logger: Logger,
+        private val httpClient: HttpClient,
         private val userAgent: String? = null
     ) {
         fun build(): MeasurementProtocol {
             return MeasurementProtocol().apply {
                 this.tId = trackingId
-                httpClient?.let {
-                    this.httpCli = it
-                }
+                this.log = logger
+                this.httpCli = httpClient
                 userAgent?.let {
                     this.ua = it
                 }
-                this.log = logger
             }
         }
     }
