@@ -10,7 +10,8 @@ class GoogleAnalytics {
         val mp = MeasurementProtocol
             .Builder(
                 trackingId = tid,
-                httpClient = httpClient
+                httpClient = httpClient,
+                logger = SampleNapierLogger()
             ).build()
 
         mp.also { ga ->
@@ -38,7 +39,8 @@ class GoogleAnalytics {
         val mp = MeasurementProtocol
             .Builder(
                 trackingId = tid,
-                httpClient = httpClient
+                httpClient = httpClient,
+                logger = SampleNapierLogger()
             ).build()
 
         mp.also { ga ->

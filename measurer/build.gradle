@@ -12,6 +12,7 @@ kotlin {
     iosArm32('iosArm32')
     iosArm64('iosArm64')
     jvm()
+    js()
 
     sourceSets {
         commonMain {
@@ -52,7 +53,6 @@ kotlin {
                 implementation rootProject.ext.kotlinxIoNative
                 // coroutine
                 implementation rootProject.ext.coroutineNative
-
                 // serialization
                 implementation rootProject.ext.serializationNative
 
@@ -73,7 +73,6 @@ kotlin {
                 implementation rootProject.ext.kotlinxIoNative
                 // coroutine
                 implementation rootProject.ext.coroutineNative
-
                 // serialization
                 implementation rootProject.ext.serializationNative
 
@@ -94,7 +93,6 @@ kotlin {
                 implementation rootProject.ext.kotlinxIoNative
                 // coroutine
                 implementation rootProject.ext.coroutineNative
-
                 // serialization
                 implementation rootProject.ext.serializationNative
 
@@ -133,6 +131,34 @@ kotlin {
                 implementation rootProject.ext.ktorClientJetty
             }
         }
+        jsMain {
+            dependencies {
+                implementation rootProject.ext.kotlinJs
+                // io
+                implementation rootProject.ext.kotlinxIoJs
+                // coroutine
+                implementation rootProject.ext.coroutineJs
+                // serialization
+                implementation rootProject.ext.serializationJs
+
+                // napier
+                implementation rootProject.ext.napierJs
+            }
+        }
+        jsTest {
+            dependencies {
+                implementation rootProject.ext.kotlinTestJs
+                implementation rootProject.ext.kotlinTestAnnotation
+                implementation rootProject.ext.ktorClientJs
+                implementation rootProject.ext.ktorClientMockJs
+            }
+        }
+    }
+}
+
+[compileKotlinJs, compileTestKotlinJs]*.configure {
+    kotlinOptions {
+        moduleKind = "umd"
     }
 }
 

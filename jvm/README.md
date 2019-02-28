@@ -1,4 +1,4 @@
-# Measurer Sample Server
+# Measurer Sample JVM
 
 ## run
 

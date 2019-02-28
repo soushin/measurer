@@ -4,7 +4,7 @@
 # Measurer
 
 - Measurer is client library for Google Analytics(using measurement protocol).
-- Kotlin Multi-platform support(JVM, Android, iOS).
+- Kotlin Multi-platform support.
 
 ## Features
 
@@ -51,8 +51,8 @@ class Sample {
 ## Todo
 
 - [x] Upload bintray
-- [x] Support iOS
-- [ ] Support JS
+- [x] Support navite 
+- [x] Support JS
 
 ## Installation
 
@@ -68,22 +68,22 @@ Depending on your type of Kotlin project add one of these dependencies:
 
 **Common**
 ```groovy
-implementation 'com.github.soushin:measurer:0.0.2'
+implementation 'com.github.soushin:measurer:0.0.3'
 ```
 
 **JVM**
 ```groovy
-implementation 'com.github.soushin:measurer-jvm:0.0.2'
+implementation 'com.github.soushin:measurer-jvm:0.0.3'
 
 ```
 **Android**
 ```groovy
-implementation 'com.github.soushin:measurer-android:0.0.2'
+implementation 'com.github.soushin:measurer-android:0.0.3'
 ```
 
 **iOS**
 ```groovy
-implementation 'com.github.soushin:measurer-ios:0.0.2'
+implementation 'com.github.soushin:measurer-ios:0.0.3'
 ```
 
 ## Usage
@@ -153,7 +153,7 @@ MeasurerProxyKt.pageTracking(tid: "UA-12345678-1")
 
 ## Logger
 
-Library uses [Napier](https://github.com/AAkira/Napier). If you want to use your logging library, implements Logger.
+Sample uses [Napier](https://github.com/AAkira/Napier). If you want to use your logging library, implements Logger.
 
 ## Licence
 

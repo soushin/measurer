@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mpp_sample-js">
+    <output-path>$PROJECT_DIR$/mpp_sample/build/libs</output-path>
+    <root id="archive" name="mpp_sample-js.jar">
+      <element id="module-output" name="mpp_sample_jsMain" />
+    </root>
+  </artifact>
+</component>
